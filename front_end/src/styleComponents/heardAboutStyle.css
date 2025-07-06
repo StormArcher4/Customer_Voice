@@ -1,0 +1,73 @@
+.conatainer {
+    width: 100%;
+    background-color: #e0f7fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; 
+    box-sizing: border-box;
+}
+.conatainer .about {
+    background-color: #fafafa;
+    border: 1px solid #d7ccc8;
+    padding: 30px;
+    border-radius: 10px;
+    max-height: 70vh;
+    overflow: scroll;
+}
+@media (max-width: 600px) {
+    .about {
+      margin-left: 15px;
+      margin-right: 15px;
+    }
+  }
+.conatainer .about  .title {
+    text-align: center;
+    margin-bottom: 30px;
+}
+.conatainer .about h2 {
+    padding: 20px;
+}
+.conatainer .about p {
+    color: #616161;
+}
+.conatainer .about .card {
+    padding: 10px;
+    border: 1px solid #bdbdbd;
+    background-color: #eee;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s;
+}
+.conatainer .about .card:hover {
+    background-color: #b3e5fc;
+}
+.conatainer .about .card div {
+    display: flex;
+    align-items: center;
+}
+.conatainer .about .card .icon {
+    margin-right: 10px;
+}
+.conatainer .about .card:nth-child(1) .icon {
+    color: #2979ff;
+}
+.conatainer .about .card:nth-child(2) .icon {
+    color: #f44336;
+}
+.conatainer .about .card:nth-child(3) .icon {
+    color: #304ffe;
+}
+.conatainer .about .card:nth-child(4) .icon {
+    color: #6200ea;
+}
+.conatainer .about .card:nth-child(5) .icon {
+    color: #00c853;
+}
+.conatainer .about .card:nth-child(6) .icon {
+    color: #795548;
+}
