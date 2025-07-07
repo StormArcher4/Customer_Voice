@@ -5,6 +5,7 @@ import UserInfo from './components/UserInfo';
 import { UserInformationContext } from './contexts/userInfoInfo';
 import { useState } from 'react';
 import HeardAbout from './components/HeardAbout';
+import EmojiRatingPage from './components/emojirating';
 
 
 const informations = {
@@ -14,6 +15,7 @@ const informations = {
   email: "",
   phone: ""
 }
+
 
 function App() {
   const [userInformations, setUserInformations] = useState(informations)
@@ -33,6 +35,7 @@ function App() {
         <Route path='/heard-about' element={<HeardAbout/>}/>
         <Route path='/form-contact' element={<UserInfo/>}/>
         <Route path='/thank-you' element={<ThankYouPage/>}/>
+       <Route path='/rating' element={<EmojiRatingPage/>}/>
       </Routes>
     </div>
     </UserInformationContext.Provider>
