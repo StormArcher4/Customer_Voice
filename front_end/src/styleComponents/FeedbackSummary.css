@@ -1,5 +1,4 @@
-/* FeedbackSummary.css */
-
+/* Container */
 .feedback-container {
   min-height: 100vh;
   background-color: #f9fafb;
@@ -11,10 +10,12 @@
   margin: 0 auto;
 }
 
+/* Card */
 .feedback-card {
   background-color: white;
   border-radius: 0.75rem;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+              0 4px 6px -2px rgba(0, 0, 0, 0.05);
   padding: 2rem;
   margin-bottom: 2rem;
 }
@@ -25,13 +26,6 @@
   align-items: center;
   gap: 0.75rem;
   margin-bottom: 1.5rem;
-}
-
-.feedback-title {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #1f2937;
-  margin: 0;
 }
 
 .section-title {
@@ -65,8 +59,13 @@
   height: 1rem;
 }
 
-/* Service Experience Row */
-.service-row {
+.contact-icon {
+  color: #ea580c;
+}
+
+/* Rows */
+.service-row,
+.found-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -74,7 +73,12 @@
   border-bottom: 1px solid #f3f4f6;
 }
 
-.service-left {
+.found-row {
+  margin-bottom: 1.5rem;
+}
+
+.service-left,
+.found-left {
   display: flex;
   align-items: center;
   gap: 0.75rem;
@@ -94,27 +98,12 @@
   font-weight: 500;
 }
 
-/* How Found Row */
-.found-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem 0;
-  margin-bottom: 1.5rem;
-}
-
-.found-left {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
 .found-text {
   color: #4b5563;
   font-weight: 500;
 }
 
-/* Contact Info Grid */
+/* Contact Info */
 .contact-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -149,11 +138,7 @@
   text-overflow: ellipsis;
 }
 
-.contact-icon {
-  color: #ea580c;
-}
-
-/* Additional Comments */
+/* Comments */
 .comments-section {
   background-color: #fff7ed;
   padding: 1rem;
@@ -216,12 +201,7 @@
   background-color: #fff7ed;
 }
 
-.button-center {
-  display: flex;
-  justify-content: center;
-}
-
-/* Footer Text */
+/* Footer */
 .footer-text {
   text-align: center;
   color: #6b7280;
@@ -229,7 +209,7 @@
   margin-bottom: 0;
 }
 
-/* Success Page Styles */
+/* Success Block */
 .success-container {
   text-align: center;
   margin-bottom: 2rem;
@@ -289,12 +269,12 @@
   margin-bottom: 0;
 }
 
-/* Responsive Design */
+/* Responsive */
 @media (min-width: 640px) {
   .button-container {
     flex-direction: row;
   }
-  
+
   .contact-grid {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -304,21 +284,21 @@
   .feedback-container {
     padding: 1rem 0.5rem;
   }
-  
+
   .feedback-card {
     padding: 1.5rem;
   }
-  
+
   .contact-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .contact-value {
     white-space: normal;
     overflow: visible;
     text-overflow: unset;
   }
-  
+
   .success-title {
     font-size: 1.875rem;
   }
