@@ -1,11 +1,12 @@
 import { Route, Routes, Link } from 'react-router-dom';
 import './App.css';
-import ThankYouPage from './components/ThankYouPage';
+import FeedbackSummary from './components/FeedbackSummary';
 import UserInfo from './components/UserInfo';
 import { UserInformationContext } from './contexts/userInfoInfo';
 import { useState } from 'react';
 import HeardAbout from './components/HeardAbout';
 import EmojiRatingPage from './components/emojirating';
+
 
 
 const informations = {
@@ -28,13 +29,13 @@ function App() {
         <Route path='/' element={
           <div>
           <h1>Welcome!</h1>
-          <Link to="/heard-about">how did you here about us</Link>
+          <Link to="/rating">Lets learn about you opinion</Link>
           </div>
           }
         /> 
         <Route path='/heard-about' element={<HeardAbout/>}/>
         <Route path='/form-contact' element={<UserInfo/>}/>
-        <Route path='/thank-you' element={<ThankYouPage/>}/>
+        <Route path='/thankyou' element={<FeedbackSummary/>}/>
        <Route path='/rating' element={<EmojiRatingPage/>}/>
       </Routes>
     </div>

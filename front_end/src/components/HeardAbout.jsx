@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useState, useContext } from 'react'
 import '../styleComponents/heardAboutStyle.css'
 import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
@@ -16,6 +16,7 @@ import { UserInformationContext } from '../contexts/userInfoInfo';
 function HeardAbout() {
   const navigate = useNavigate()
   const {userInformations, setUserInformations} = useContext(UserInformationContext)
+  
 
   function  handleNextClick() {
     let heardAboutusFrom = "";
@@ -23,14 +24,14 @@ function HeardAbout() {
         case "google":
             heardAboutusFrom = "Google";
             break;
-        case "instagrame":
-            heardAboutusFrom = "Instagrame";
+        case "instagram":
+            heardAboutusFrom = "Instagram";
             break;
         case "facebook":
             heardAboutusFrom = "Facebook";
             break;
-        case "friend":
-            heardAboutusFrom = "Friend or Family";
+        case "freind":
+            heardAboutusFrom = "Freind or Family";
             break;
         case "tv":
             heardAboutusFrom = "TV/Radio Ad";
@@ -50,6 +51,7 @@ function HeardAbout() {
   }
   const [selected, setSelected] = useState('');
   return (
+    <div className='pagewraper1'>
     <div className='conatainer'>
         <Container maxWidth="sm" className='about'
         sx={{
@@ -65,7 +67,7 @@ function HeardAbout() {
             </div>
             <Container maxWidth="sm" className=''>
                 <Stack className='card' direction="row" spacing={2}
-                    style={{backgroundColor: selected === "google"? "#b2ebf2": "#eee"}}
+                    style={{backgroundColor: selected === "google"? "rgb(250, 129, 49)": "rgba(250, 235, 225, 0.58)"}}
                     onClick={() => {
                         setSelected("google")
                     }
@@ -75,12 +77,12 @@ function HeardAbout() {
                         <SearchIcon className='icon'/>
                         <h4>google search</h4>
                     </div>
-                    <Checkbox checked={selected === "google"}/>
+                    <Checkbox  className="checkbox" checked={selected === "google"}/>
                 </Stack>
                 <Stack className='card' direction="row" spacing={2}
-                    style={{backgroundColor: selected === "instagrame"? "#b2ebf2": "#eee"}}
+                    style={{backgroundColor: selected === "instagram"? "rgb(250, 129, 49)": "rgba(250, 235, 225, 0.58)"}}
                     onClick={() => {
-                        setSelected("instagrame")
+                        setSelected("instagram")
                     }
                     }
                 >
@@ -88,10 +90,10 @@ function HeardAbout() {
                         <InstagramIcon className='icon'/>
                         <h4>Instagram</h4>
                     </div>
-                    <Checkbox checked={selected === "instagrame"}/>
+                    <Checkbox className="checkbox" checked={selected === "instagram"}/>
                 </Stack>
                 <Stack className='card' direction="row" spacing={2}
-                    style={{backgroundColor: selected === "facebook"? "#b2ebf2": "#eee"}}
+                    style={{backgroundColor: selected === "facebook"? "rgb(250, 129, 49)": "rgba(250, 235, 225, 0.58)"}}
                     onClick={() => {
                         setSelected("facebook")
                     }
@@ -101,12 +103,12 @@ function HeardAbout() {
                         <FacebookIcon className='icon'/>
                         <h4>Facebook</h4>
                     </div>
-                    <Checkbox checked={selected === "facebook"}/>
+                    <Checkbox className="checkbox" checked={selected === "facebook"}/>
                 </Stack>
                 <Stack className='card' direction="row" spacing={2}
-                    style={{backgroundColor: selected === "friend"? "#b2ebf2": "#eee"}}
+                    style={{backgroundColor: selected === "freind"? "rgb(250, 129, 49)": "rgba(250, 235, 225, 0.58)"}}
                     onClick={() => {
-                        setSelected("friend")
+                        setSelected("freind")
                     }
                     }
                 >
@@ -114,10 +116,10 @@ function HeardAbout() {
                         <Diversity3Icon className='icon'/>
                         <h4>Freind or family</h4>
                     </div>
-                    <Checkbox checked={selected === "friend"}/>
+                    <Checkbox className="checkbox" checked={selected === "freind"}/>
                 </Stack>
                 <Stack className='card' direction="row" spacing={2}
-                    style={{backgroundColor: selected === "tv"? "#b2ebf2": "#eee"}}
+                    style={{backgroundColor: selected === "tv"? "rgb(250, 129, 49)": "rgba(250, 235, 225, 0.58)"}}
                     onClick={() => {
                         setSelected("tv")
                     }
@@ -127,10 +129,10 @@ function HeardAbout() {
                         <LiveTvIcon className='icon'/>
                         <h4>TV/Radio Ad</h4>
                     </div>
-                    <Checkbox checked={selected === "tv"}/>
+                    <Checkbox className="checkbox" checked={selected === "tv"}/>
                 </Stack>
                 <Stack className='card' direction="row" spacing={2}
-                    style={{backgroundColor: selected === "other"? "#b2ebf2": "#eee"}}
+                    style={{backgroundColor: selected === "other"? "rgb(250, 129, 49)": "rgba(250, 235, 225, 0.58)"}}
                     onClick={() => {
                         setSelected("other")
                     }
@@ -140,21 +142,36 @@ function HeardAbout() {
                         <DoNotDisturbIcon className='icon'/>
                         <h4>Other</h4>
                     </div>
-                    <Checkbox checked={selected === "other"}/>
+                    <Checkbox className="checkbox" checked={selected === "other"}/>
                 </Stack>
                 <Stack>
-                    <Button 
-                        variant="outlined"
-                        disabled={selected === ""}
-                        size="large"
-                        onClick={()=> {
-                            handleNextClick()
-                        }}
-                    >Next</Button>
+                    <Button
+                    sx={{
+                        border: '2px solid orange',
+                        color: 'white',
+                        fontSize: '1.4rem',
+                        fontWeight: 'bold',
+                        textTransform: 'none',
+                        backgroundColor: selected !== "" ? 'rgba(240, 115, 32, 0.58)' : 'rgba(250, 235, 225, 0.58)',
+                        boxShadow: selected !== "" ? '0 0 10px rgba(43, 35, 31, 0.62)' : 'none',
+                        '&:hover': {
+                        borderColor: 'white',
+                        backgroundColor: selected !== "" ? 'rgba(240, 115, 32, 0.75)' : 'rgba(250, 235, 225, 0.7)',
+                        },
+                    }}
+                    variant="outlined"
+                    disabled={selected === ""}
+                    size="large"
+                    onClick={handleNextClick}
+                    >
+                    Next
+                    </Button>
+
                 </Stack>
 
             </Container>
         </Container>
+    </div>
     </div>
   )
 }

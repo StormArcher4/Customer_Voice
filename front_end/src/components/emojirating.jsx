@@ -1,8 +1,9 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState, useContext } from 'react';
 import Zoom from '@mui/material/Zoom';
 import { Player } from '@lottiefiles/react-lottie-player';
 import '../styleComponents/emoji.css';
 import { useNavigate } from 'react-router-dom';
+import { UserInformationContext } from '../contexts/userInfoInfo';
 
 function EmojiCard({ text, src, isSelected, onClick }) {
   const playerRef = useRef(null);
@@ -38,17 +39,14 @@ function EmojiCard({ text, src, isSelected, onClick }) {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       className={`emoji-card${isSelected ? ' selected' : ''}`}
-      
     >
-  
-<Player
-  ref={playerRef}
-  autoplay={false}
-  loop
-  src={src}
-  className="lottie-player"
-/>
-      
+      <Player
+        ref={playerRef}
+        autoplay={false}
+        loop
+        src={src}
+        className="lottie-player"
+      />
       <p style={{ fontSize: '1.15rem', fontWeight: isSelected ? '900' : '700', margin: 0 }}>
         {text}
       </p>
@@ -67,18 +65,18 @@ function EmojiRating({ selectedIndex, setSelectedIndex }) {
 
   return (
     <div
-        style={{
-          display: 'flex',
-          flexWrap: 'wrap', // ✅ allow wrap
-          justifyContent: 'center', // ✅ center children
-          alignItems: 'flex-start',
-          gap: '12px',
-          padding: '1rem',
-          maxWidth: '100%',
-          boxSizing: 'border-box',
-          overflow: 'hidden', // ✅ remove scroll
-          width: '100%',
-        }}
+      style={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'center',
+        alignItems: 'flex-start',
+        gap: '12px',
+        padding: '1rem',
+        maxWidth: '100%',
+        boxSizing: 'border-box',
+        overflow: 'hidden',
+        width: '100%',
+      }}
     >
       {cards.map(({ text, src }, i) => (
         <Zoom key={i} in={true} style={{ transitionDelay: `${i * 100}ms` }}>
@@ -100,22 +98,39 @@ function EmojiRatingPage() {
   const [selectedIndex, setSelectedIndex] = useState(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const { userInformations, setUserInformations } = useContext(UserInformationContext);
 
   const handleClick = () => {
     setLoading(true);
+
+    const satisfactionLevels = [
+      'Very Satisfying',
+      'Good',
+      'Neutral',
+      'Not what I expected',
+      'Terrible',
+    ];
+
+    const updatedInfo = {
+      ...userInformations,
+      satisfaction: satisfactionLevels[selectedIndex],
+    };
+
+    setUserInformations(updatedInfo);
+    localStorage.setItem('userData', JSON.stringify(updatedInfo));
+
     setTimeout(() => {
       navigate('/heard-about');
-    }, 1500);
+    }, 700);
   };
 
   return (
-    <>
+    <div className='pagewraper'>
       <h1 className='titletext'>Provide us with your level of satisfaction from our service</h1>
       <div className='emojicontainer'>
         <EmojiRating selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} />
       </div>
       <div style={{ display: 'flex', justifyContent: 'center', marginTop: '2.5rem' }}>
-       
         <button
           className='buttonnext'
           onClick={handleClick}
@@ -124,7 +139,7 @@ function EmojiRatingPage() {
           {loading ? 'Loading...' : 'Share Your Reaction'}
         </button>
       </div>
-    </>
+    </div>
   );
 }
 

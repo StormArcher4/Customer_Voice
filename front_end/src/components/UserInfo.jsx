@@ -44,7 +44,7 @@ function UserInfo() {
     } 
     // go to the final page after submission
     localStorage.setItem("userData", JSON.stringify(userInformations))
-    navigate("/thank-you");
+    navigate("/thankyou");
     console.log(userInformations)
   }
 
@@ -75,6 +75,7 @@ function UserInfo() {
   }
 
   return (
+    <div className='pagewraper2'>
     <div className='formHolder'>
       <motion.div
         initial={{ opacity: 0, y: 40 }}
@@ -94,7 +95,7 @@ function UserInfo() {
         }}
         >
           <h1>Customer Feedback Form</h1>
-          <Divider />
+          <Divider sx={{ borderColor: ' rgba(252, 245, 236, 0.7)', borderWidth: 1, marginBottom: 2 }} />
           <Container maxWidth="sm">
               <form>
                 <motion.div
@@ -165,30 +166,36 @@ function UserInfo() {
                   }
                   transition={{ duration: 0.3 }}
                 >
-                  <Button variant="contained" type='submit'
-                  style={ userInformations.name.trim() === "" ||
-                    userInformations.email.trim() === "" ||
-                    userInformations.phone.trim() === "" ?
-                    {
-                     backgroundColor: "#bdbdbd",
-                     color: "#e0e0e0"
-                    }
+              <Button
+                variant="contained"
+                type="submit"
+                style={
+                  userInformations.name.trim() === "" ||
+                  userInformations.email.trim() === "" ||
+                  userInformations.phone.trim() === ""
+                    ? {
+                        backgroundColor: " rgba(241, 183, 134, 0.7)",
+                        color: "#e0e0e0",
+                        boxShadow: "0 0 8px 2px rgba(255, 255, 255, 0.7)",
+                      }
                     : {
-                      backgroundColor: "#039be5",
-                      color: "#eee"
-                    }
-                  }
-                  onClick={(e) => {
-                    handleSubmit(e)
-                  }}
-                  >
-                    Submit
-                  </Button>
+                        backgroundColor: "rgba(240, 115, 32, 0.75)",
+                        color: "#eee",
+                        boxShadow: "0 0 12px 4px rgba(255, 255, 255, 0.8)",
+                      }
+                }
+                onClick={(e) => {
+                  handleSubmit(e);
+                }}
+              >
+                Submit
+              </Button>
                 </motion.div>
               </form>
           </Container>
         </Container>
       </motion.div>
+    </div>
     </div>
   )
 }

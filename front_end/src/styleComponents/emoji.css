@@ -13,29 +13,49 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-body {
-  margin: 0;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-image: url('../../public/background.jpg');
+.pagewraper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: url('../../public/background2.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
+  z-index: 0;
+  overflow-y: auto;
+}
+
+.pagewraper::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.774);
+  z-index: -1;
 }
 
 /* Title */
 .titletext {
   font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: 700;
-  text-align: center;
-  margin: clamp(2rem, 10vh, 4rem) 0 1rem 0;
+  text-align: center !important;
+  margin: clamp(2rem, 10vh, 4rem) auto 1rem auto;
   padding-top: env(safe-area-inset-top, 0);
   font-family: 'Fontdiner Swanky', cursive;
-  background: linear-gradient(270deg, #0cbef5, #03b84f, #2ee40a62, #c404a7, hsl(253, 100%, 54%), #454fcf, #f73d8a);
-  background-size: 600% 600%;
+background: linear-gradient(270deg,
+  #ad4c06 0%,    
+  #ff7300 10%,  
+  #e09421 18%,   
+  #ccffcc 28%,    
+  #ff9800 90%,   
+  #ff6a00 100%    
+);
+ background-size: 600% 600%;
   animation: fadeSlideDown 1s ease-out forwards, gradientMove 8s ease-in-out infinite;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -81,7 +101,7 @@ body {
   padding: clamp(0.8rem, 1.2vw, 1.5rem);
   border-radius: 16px;
   box-shadow: 0 0 12px rgba(75, 137, 209, 0.2);
-  background: linear-gradient(145deg, #2300e925, rgba(247, 86, 161, 0.151));
+  background: linear-gradient(145deg, rgba(245, 217, 141, 0.301), rgba(255, 236, 185, 0.151));
   transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
   width: 180px;
   min-height: 260px; /* fixed min height for all cards */
@@ -97,9 +117,12 @@ body {
 /* Selected card styles */
 .emoji-card.selected {
   transform: scale(1.05);
-  box-shadow: 0 0 25px 8px rgba(255, 140, 0, 0.6);
-  background: linear-gradient(145deg, #4d40ff85, rgba(231, 56, 65, 0.34));
+  box-shadow: 0 0 25px 8px rgba(31, 32, 6, 0.445); 
+  background: linear-gradient(145deg, rgba(255, 172, 116, 0.918), rgba(241, 152, 92, 0.658)); 
   z-index: 10;
+  transition: all 0.3s ease;
+  border-radius: 16px;
+  backdrop-filter: blur(3px);
 }
 
 /* Lottie player inside card */
@@ -123,10 +146,11 @@ body {
   overflow-wrap: anywhere;
 
   display: -webkit-box;
-  -webkit-line-clamp: 3; /* limit to 3 lines */
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: normal;
 
   flex-shrink: 0;
   user-select: none;
@@ -135,26 +159,32 @@ body {
 .emoji-card.selected p {
   font-weight: 900;
   font-size: clamp(1rem, 1.8vw, 1.3rem);
-  -webkit-line-clamp: 4; /* a bit more lines when selected */
+
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
 }
 
 /* Button */
 .buttonnext {
   padding: clamp(0.75rem, 2vw, 1rem) clamp(2rem, 10vw, 5rem);
   font-size: clamp(1.25rem, 3vw, 2rem);
-  font-weight: 900;
+  font-weight: 600;
   border: none;
   border-radius: 20px;
-  background-color: #f1d7d0;
-  color: rgba(58, 15, 216, 0.692);
+  background-color: #ee730e;
+  color: rgba(250, 250, 250, 0.692);
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.363);
   animation: fadeUp 0.8s ease-out forwards;
   animation-delay: 0.4s;
   opacity: 0;
   white-space: nowrap;
-  margin: 1rem 0;
+  margin: 0.4rem 0;
   width: auto;
   max-width: 100%;
   box-sizing: border-box;
@@ -165,7 +195,7 @@ body {
 }
 
 .buttonnext:disabled {
-  background-color: #f5f1ef;
+  background-color: #e79f7b;
   cursor: not-allowed;
 }
 

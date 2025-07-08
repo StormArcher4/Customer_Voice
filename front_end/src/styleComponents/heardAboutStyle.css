@@ -1,40 +1,85 @@
+.pagewraper1 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: url('../../public/background3.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  z-index: 0;
+  overflow-y: auto;
+}
+
+.pagewraper1::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.78);
+  z-index: -1;
+}
+
 .conatainer {
-    width: 100%;
-    background-color: #e0f7fa;
+    
+    width: 100vw;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: transparent;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh; 
     box-sizing: border-box;
+
 }
+
 .conatainer .about {
-    background-color: #fafafa;
-    border: 1px solid #d7ccc8;
+    background-color: rgba(233, 227, 210, 0.904); /* Semi-transparent for better readability */
+    border: 1px solid #acc1e9;
     padding: 30px;
     border-radius: 10px;
-    max-height: 70vh;
-    overflow: scroll;
+    height: auto;
+    max-height: none;
+    overflow: visible;
+    /* Add shadow for better visibility over background image */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.486);
 }
+
 @media (max-width: 600px) {
     .about {
-      margin-left: 15px;
-      margin-right: 15px;
+        margin-left: 15px;
+        margin-right: 15px;
     }
-  }
-.conatainer .about  .title {
+}
+
+.conatainer .about .title {
     text-align: center;
     margin-bottom: 30px;
+    font-display: bold;
 }
-.conatainer .about h2 {
+
+.conatainer .about .title h2 {
     padding: 20px;
+    color: #d85803; /* Fixed: moved color to h2 specifically */
+    font-size: 35px;
 }
-.conatainer .about p {
-    color: #616161;
+
+.conatainer .about .title p {
+    color: #000000; 
+    font-weight: bold;
 }
+
 .conatainer .about .card {
     padding: 10px;
     border: 1px solid #bdbdbd;
     background-color: #eee;
+    color: black;
     border-radius: 10px;
     margin-bottom: 20px;
     cursor: pointer;
@@ -42,32 +87,57 @@
     justify-content: space-between;
     align-items: center;
     transition: all 0.3s;
+    z-index: 10;
 }
+
 .conatainer .about .card:hover {
     background-color: #b3e5fc;
 }
+
 .conatainer .about .card div {
     display: flex;
     align-items: center;
 }
+
 .conatainer .about .card .icon {
     margin-right: 10px;
 }
+
 .conatainer .about .card:nth-child(1) .icon {
     color: #2979ff;
 }
+
 .conatainer .about .card:nth-child(2) .icon {
     color: #f44336;
 }
+
 .conatainer .about .card:nth-child(3) .icon {
     color: #304ffe;
 }
+
 .conatainer .about .card:nth-child(4) .icon {
     color: #6200ea;
 }
+
 .conatainer .about .card:nth-child(5) .icon {
     color: #00c853;
 }
+
 .conatainer .about .card:nth-child(6) .icon {
     color: #795548;
+}
+
+
+
+.checkbox {
+  color: white !important; /* unchecked */
+}
+
+.checkbox.Mui-checked {
+  color: rgb(250, 216, 187) !important; /* checked */
+}
+
+/* Also target the svg icon inside */
+.checkbox .MuiSvgIcon-root {
+  fill: currentColor !important;
 }
