@@ -51,8 +51,6 @@ function HeardAbout() {
   }
   const [selected, setSelected] = useState('');
   return (
-    <div className='pagewraper1'>
-    <div className='conatainer'>
         <Container maxWidth="sm" className='about'
         sx={{
             mx: {
@@ -65,7 +63,7 @@ function HeardAbout() {
                 <h2>How did you hear about us?</h2>
                 <p>Your feedback helps us understand how to reach more amazing people like you!</p>
             </div>
-            <Container maxWidth="sm" className=''>
+            <Container maxWidth="sm">
                 <Stack className='card' direction="row" spacing={2}
                     style={{backgroundColor: selected === "google"? "rgb(250, 129, 49)": "rgba(250, 235, 225, 0.58)"}}
                     onClick={() => {
@@ -171,8 +169,6 @@ function HeardAbout() {
 
             </Container>
         </Container>
-    </div>
-    </div>
   )
 }
 

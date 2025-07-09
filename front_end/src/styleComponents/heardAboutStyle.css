@@ -1,52 +1,11 @@
-.pagewraper1 {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-image: url('../../public/background3.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  z-index: 0;
-  overflow-y: auto;
-}
-
-.pagewraper1::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.78);
-  z-index: -1;
-}
-
-.conatainer {
-    
-    width: 100vw;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-color: transparent;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh; 
-    box-sizing: border-box;
-
-}
-
-.conatainer .about {
+.about {
     background-color: rgba(233, 227, 210, 0.904); /* Semi-transparent for better readability */
     border: 1px solid #acc1e9;
     padding: 30px;
     border-radius: 10px;
-    height: auto;
-    max-height: none;
-    overflow: visible;
+    /*my fixes*/
+    max-height: 90vh;
+    overflow: scroll;
     /* Add shadow for better visibility over background image */
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.486);
 }
@@ -58,24 +17,24 @@
     }
 }
 
-.conatainer .about .title {
+.about .title {
     text-align: center;
     margin-bottom: 30px;
     font-display: bold;
 }
 
-.conatainer .about .title h2 {
+.about .title h2 {
     padding: 20px;
     color: #d85803; /* Fixed: moved color to h2 specifically */
     font-size: 35px;
 }
 
-.conatainer .about .title p {
+.about .title p {
     color: #000000; 
     font-weight: bold;
 }
 
-.conatainer .about .card {
+.about .card {
     padding: 10px;
     border: 1px solid #bdbdbd;
     background-color: #eee;
@@ -90,40 +49,40 @@
     z-index: 10;
 }
 
-.conatainer .about .card:hover {
+.about .card:hover {
     background-color: #b3e5fc;
 }
 
-.conatainer .about .card div {
+.about .card div {
     display: flex;
     align-items: center;
 }
 
-.conatainer .about .card .icon {
+.about .card .icon {
     margin-right: 10px;
 }
 
-.conatainer .about .card:nth-child(1) .icon {
+.about .card:nth-child(1) .icon {
     color: #2979ff;
 }
 
-.conatainer .about .card:nth-child(2) .icon {
+.about .card:nth-child(2) .icon {
     color: #f44336;
 }
 
-.conatainer .about .card:nth-child(3) .icon {
+.about .card:nth-child(3) .icon {
     color: #304ffe;
 }
 
-.conatainer .about .card:nth-child(4) .icon {
+.about .card:nth-child(4) .icon {
     color: #6200ea;
 }
 
-.conatainer .about .card:nth-child(5) .icon {
+.about .card:nth-child(5) .icon {
     color: #00c853;
 }
 
-.conatainer .about .card:nth-child(6) .icon {
+.about .card:nth-child(6) .icon {
     color: #795548;
 }
 

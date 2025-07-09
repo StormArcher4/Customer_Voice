@@ -98,7 +98,15 @@ function EmojiRatingPage() {
   const [selectedIndex, setSelectedIndex] = useState(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  
   const { userInformations, setUserInformations } = useContext(UserInformationContext);
+  
+  useEffect(()=> {
+    const storedData = JSON.parse(localStorage.getItem("userData"))
+    if(storedData) {
+      setUserInformations(storedData)
+    }
+  }, [])
 
   const handleClick = () => {
     setLoading(true);

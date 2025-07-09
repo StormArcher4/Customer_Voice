@@ -1,0 +1,62 @@
+.admin:hover {
+    background-color: rgb(74 144 226);
+    color: white;
+}
+.stack {
+    text-align: center;
+}
+.stack div {
+    margin-bottom: 30px;
+}
+.stack div h1 {
+    font-weight: bold;
+    font-size: 40px;
+    color: white;
+}
+.stack div h1 span {
+    color: #76ff03;
+    margin-left: 8px;
+}
+.stack div p {
+    color: #eee;
+    padding: 20px;
+}
+.stack button {
+    position: relative;
+    padding: 10px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    background-image:
+    linear-gradient(white, white),
+    linear-gradient(270deg, 
+        #ff0057, #ff8a00, #40e0d0, #ff0057);
+    background-size: 400% 400%;
+    animation: borderGradientMove 6s linear infinite;
+    color: black; /* button text color */
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+  }
+.stack button span {
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+  }
+  
+  @keyframes borderGradientMove {
+    0% {
+      background-position: 0% 50%;
+    }
+    100% {
+      background-position: 400% 50%;
+    }
+  }
+.stack button:hover .icon {
+    transform: rotate(-10deg);
+}
+.stack button .icon {
+    margin-right: 10px;
+}

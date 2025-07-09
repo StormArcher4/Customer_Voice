@@ -6,6 +6,8 @@ import { UserInformationContext } from './contexts/userInfoInfo';
 import { useState } from 'react';
 import HeardAbout from './components/HeardAbout';
 import EmojiRatingPage from './components/emojirating';
+import Home from './components/Home';
+import Admindashboard from './components/Admindashboard'
 
 
 
@@ -24,20 +26,17 @@ function App() {
   return (
     <UserInformationContext.Provider value={{userInformations, setUserInformations}}>
     <div className="App">
-      {/* <HeardAbout/> */}
-      <Routes>
-        <Route path='/' element={
-          <div>
-          <h1>Welcome!</h1>
-          <Link to="/rating">Lets learn about you opinion</Link>
-          </div>
-          }
-        /> 
-        <Route path='/heard-about' element={<HeardAbout/>}/>
-        <Route path='/form-contact' element={<UserInfo/>}/>
-        <Route path='/thankyou' element={<FeedbackSummary/>}/>
-       <Route path='/rating' element={<EmojiRatingPage/>}/>
-      </Routes>
+      <div className='container'>
+        <Routes>
+          <Route path='/' element={<Home/>}/>
+          <Route path='/heard-about' element={<HeardAbout/>}/>
+          <Route path='/form-contact' element={<UserInfo/>}/>
+          <Route path='/thankyou' element={<FeedbackSummary/>}/>
+          <Route path='/rating' element={<EmojiRatingPage/>}/>
+          {/* my modification */}
+          <Route path='/admin-dashboard' element={<Admindashboard/>}/>
+        </Routes>
+      </div>
     </div>
     </UserInformationContext.Provider>
   );

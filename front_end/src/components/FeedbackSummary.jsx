@@ -1,14 +1,23 @@
 // FeedbackSummary.jsx
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MessageSquare, CheckCircle, Star, User, Mail, Phone } from 'lucide-react';
 import '../styleComponents/FeedbackSummary.css';
 import { UserInformationContext } from '../contexts/userInfoInfo';
+import Container from '@mui/material/Container';
+
 
 const FeedbackSummary = () => {
+    
   const navigate = useNavigate();
-  const { userInformations } = useContext(UserInformationContext);
-
+  const { userInformations, setUserInformations } = useContext(UserInformationContext);
+  useEffect(()=> {
+    const storedData = JSON.parse(localStorage.getItem("userData"))
+    if(storedData) {
+      setUserInformations(storedData)
+    }
+  }, [])
+  
   // ✅ This will take the user to /rating
   const handleSubmitAnother = () => {
     navigate('/rating');
@@ -20,8 +29,9 @@ const FeedbackSummary = () => {
   };
 
   return (
+    // <Container maxWidth="md">
     <div className="feedback-container">
-      <div className="feedback-wrapper">
+      <Container maxWidth="md" className="feedback-wrapper">
         {/* Success Icon */}
         <div className="success-container">
           <div className="success-icon-wrapper">
@@ -112,7 +122,7 @@ const FeedbackSummary = () => {
             We appreciate your time and valuable insights. Your feedback helps us improve our services.
           </p>
         </div>
-      </div>
+      </Container>
     </div>
   );
 };

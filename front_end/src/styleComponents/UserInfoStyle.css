@@ -59,7 +59,7 @@
 
 
 .textField .MuiInputBase-input {
-  color: white; /* input text color */
+  color: black; /* input text color */
 }
 
 .textField label {

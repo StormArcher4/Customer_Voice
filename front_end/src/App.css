@@ -3,28 +3,19 @@
     box-sizing: border-box;
 }
 
-.App{
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+.container {
+  width: 100%;
+  background-color: #f5f7fa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; 
+  box-sizing: border-box;
   background-image: url('../public/background2.jpg');
+  background-size: cover;      
+  background-position: center; 
   background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  z-index: 0;
-  overflow-y: auto;
-}
-
-.App::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.774);
-  z-index: -1;
+  width: 100vw;                
+  height: 100vh; 
+  position: relative;
 }
