@@ -8,6 +8,7 @@ import HeardAbout from './components/HeardAbout';
 import EmojiRatingPage from './components/emojirating';
 import Home from './components/Home';
 import Admindashboard from './components/Admindashboard'
+import PrivateRoute from './components/PrivateRoute';
 
 
 
@@ -34,7 +35,13 @@ function App() {
           <Route path='/thankyou' element={<FeedbackSummary/>}/>
           <Route path='/rating' element={<EmojiRatingPage/>}/>
           {/* my modification */}
-          <Route path='/admin-dashboard' element={<Admindashboard/>}/>
+          <Route path='/admin-dashboard' 
+          element={
+            <PrivateRoute>
+              <Admindashboard/>
+            </PrivateRoute>
+          }
+          />
         </Routes>
       </div>
     </div>

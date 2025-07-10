@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo, useState } from 'react'
 import '../styleComponents/adminDashbord.css';
 import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
@@ -21,6 +21,10 @@ import TableHead from '@mui/material/TableHead';
 import Paper from '@mui/material/Paper';
 import TableRow from '@mui/material/TableRow';
 import DownloadIcon from '@mui/icons-material/Download';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import LogoutIcon from '@mui/icons-material/Logout';
+import { useNavigate } from 'react-router-dom';
 
 function createData(name, email, phone, feedback, source, date) {
     return { name, email, phone, feedback, source, date };
@@ -68,23 +72,58 @@ const rows = [
       '2025-07-10'
     )
   ];
+
   
 
 function Admindashboard() {
 
-  const [type, setType] = React.useState('all');
+  const [type, setType] = useState('all'); // liked - not liked
+  const [isLogOut, setisLogOut] = useState(false)
 
   const handleChange = (event) => {
     setType(event.target.value);
   };
 
+  const filteredFeedback = useMemo(() => {
+    if(type === "all") return rows
+    return rows.filter((data) => data.feedback === type);
+  }, [type])
+
+  const [all, positive, negative] = useMemo(()=> {
+    let tous = rows.length;
+    let pos = 0, neg = 0;
+    for(const row of rows) {
+        if(row.feedback === "liked") pos = pos +1;
+    }
+    neg = tous - pos
+    return [tous, pos, neg]
+  }, [rows])
+
+  const navigate = useNavigate();
+
+  function handleLogOut() {
+    navigate("/")
+  }
+
   return (
     <div className='holder'>
         <Container maxWidth="lg" className='dashboard-header'>
             <h2>Customer Feedback Dashboard</h2>
-            <Stack spacing={2} className='stack' direction="row">
+            <Stack style={{backgroundColor: isLogOut ? "#e5e7eb": null}} spacing={2} className='stack-admin' direction="row"
+            onClick={() => {
+                setisLogOut(!isLogOut)
+            }}
+            >
                 <AccountCircleIcon className='admin-icon'/>
                 <h3>Admin</h3>
+                {isLogOut? <KeyboardArrowUpIcon/> : <KeyboardArrowDownIcon/>}
+                {isLogOut && 
+                <div className='log-out'>
+                    <div onClick={handleLogOut}>
+                        <LogoutIcon/> Log Out
+                    </div>
+                </div>
+                }
             </Stack>
         </Container>
         <Container maxWidth="lg" className='cardholder'>
@@ -97,7 +136,7 @@ function Admindashboard() {
                 <div className='card'>
                     <div>
                         <h4>Total Feedback</h4>
-                        <span>1,234</span>
+                        <span>{all}</span>
                     </div>
                     <ChatBubbleOutlineIcon className='icon'/>
                 </div>
@@ -105,7 +144,7 @@ function Admindashboard() {
                 <div className='card'>
                     <div>
                         <h4>Positive</h4>
-                        <span>1,234</span>
+                        <span>{positive}</span>
                     </div>
                     <ThumbUpOffAltIcon className='icon'/>
                 </div>
@@ -113,7 +152,7 @@ function Admindashboard() {
                 <div className='card'>
                     <div>
                         <h4>Negative</h4>
-                        <span>1,234</span>
+                        <span>{negative}</span>
                     </div>
                     <ThumbDownOffAltIcon className='icon'/>
                 </div>
@@ -167,7 +206,7 @@ function Admindashboard() {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                    {rows.map((row) => (
+                    {filteredFeedback.map((row) => (
                         <TableRow
                         className='table-row'
                         key={row.name}
@@ -176,7 +215,11 @@ function Admindashboard() {
                             <TableCell component="th" scope="row">{row.name}</TableCell>
                             <TableCell align="left">{row.email}</TableCell>
                             <TableCell align="left">{row.phone}</TableCell>
-                            <TableCell align="left">{row.feedback}</TableCell>
+                            <TableCell align="left" className='feedback'>
+                                <span
+                                style={row.feedback === "liked" ? {backgroundColor: "#dcfce7", color: "#166534"}: {backgroundColor: "#fee2e2", color: "#a61b1b"}}
+                                >{row.feedback}</span>
+                            </TableCell>
                             <TableCell align="left">{row.source}</TableCell>
                             <TableCell align="left">{row.date}</TableCell>
                         </TableRow>

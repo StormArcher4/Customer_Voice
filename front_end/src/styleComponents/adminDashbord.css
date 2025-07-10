@@ -30,6 +30,40 @@
     border-top: none;
     color: black;
 }
+.dashboard-header .stack-admin {
+    transition: 0.3s;
+    position: relative;
+    padding: 20px;
+    padding-right: 5px;
+}
+.dashboard-header .stack-admin:hover {
+    background-color:  #e5e7eb;
+    cursor: pointer;
+    border-radius: 5px;
+
+}
+.dashboard-header .stack-admin .log-out {
+    position: absolute;
+    width: 100%;
+    color: red;
+    top: 90px;
+    right: 0;
+    padding: 20px;
+    background-color: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 5px;
+}
+.stack-admin .log-out div {
+    display: flex;
+    align-items: center;
+    transition: 0.3s;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+.stack-admin .log-out div:hover {
+    background-color: #e5e7eb;
+    padding-left: 20px;
+}
 .dashboard-header .admin-icon {
     background-color: orange;
     color: white;
@@ -41,6 +75,8 @@
 }
 .holder .cardholder {
     background-color: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-top: none;
     padding: 30px;
 }
 .holder .cardholder .welcome {
@@ -150,4 +186,13 @@
 }
 .table-row:hover {
     background-color: #e5e7eb;
+}
+
+.feedback span {
+    border: none;
+    width: fit-content;
+    padding: 5px 10px;
+    border-radius: 10px;
+    display: block;
+    font-weight: bold;
 }
