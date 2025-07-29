@@ -10,7 +10,7 @@
 }
 
 .feedback-wrapper {
-  margin-top: 150px;
+  margin-top: 10vh;
 }
 
 /* Card */
@@ -286,8 +286,9 @@
 @media (max-width: 639px) {
   .feedback-container {
     padding: 1rem 0.5rem;
+    max-height: 80vh;      /* or 100vh - header height */
+    overflow-y: auto;
   }
-
   .feedback-card {
     padding: 1.5rem;
   }
@@ -306,3 +307,10 @@
     font-size: 1.875rem;
   }
 }
+
+@media (max-height: 639px) {
+  .feedback-container {
+    padding: 1rem 0.5rem;
+    max-height: 80vh;      /* or 100vh - header height */
+    overflow-y: auto;
+  }}

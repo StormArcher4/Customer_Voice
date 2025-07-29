@@ -1,62 +1,276 @@
 .admin:hover {
     background-color: rgb(74 144 226);
     color: white;
+    
 }
+.admin:hover::before {
+  opacity: 0.5;
+}
+
+.admin:hover {
+  background-color: rgb(250, 208, 160);
+  color: white;
+  border-color: transparent;
+}
+.admin::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: calc(100% + 16px);
+  height: calc(100% + 16px);
+  border-radius: 50%;
+  pointer-events: none;
+  background: conic-gradient(
+    from var(--angle),
+    #FF0000,
+    #FF7300,
+    #d39205,
+    #32a505,
+    #0077ff,
+    #002BFF,
+    #FF00C8,
+    #FF0000
+  );
+  background-size: 100%;
+  filter: blur(12px);
+  animation: spin 3s linear infinite;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  box-sizing: content-box;
+  border: 4px solid transparent;
+  background-clip: padding-box;
+}
+.admin {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  background-color: rgba(250, 139, 75, 0.808); /* Semi-transparent white color */
+  background-image:  url('../../public/glass.jpg');
+  background-blend-mode: multiply;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+
+  color: rgba(255, 255, 255, 0.76);
+  font-size: 18px;
+  font-weight: 20px;
+  border: 1px solid rgba(250, 235, 225, 0.58);
+  transition: all 0.3s;
+  z-index: 3;
+  padding: 6px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-family: Roboto, sans-serif;
+  height: 50px;
+  box-shadow: 0 4px 15px rgba(255, 177, 124, 0.5); /* soft glow shadow */
+}
+.pagecontainer {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.281)), url(../../public/clouds.jpg);
+  background-size: cover;
+  background-position: center;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .stack {
     text-align: center;
 }
+
 .stack div {
     margin-bottom: 30px;
 }
+
 .stack div h1 {
     font-weight: bold;
     font-size: 40px;
     color: white;
 }
+
 .stack div h1 span {
     color: #76ff03;
     margin-left: 8px;
 }
+
 .stack div p {
     color: #eee;
     padding: 20px;
 }
-.stack button {
-    position: relative;
-    padding: 10px;
-    border: 1px solid transparent;
-    border-radius: 8px;
-    background-origin: border-box;
-    background-clip: content-box, border-box;
-    background-image:
-    linear-gradient(white, white),
-    linear-gradient(270deg, 
-        #ff0057, #ff8a00, #40e0d0, #ff0057);
-    background-size: 400% 400%;
-    animation: borderGradientMove 6s linear infinite;
-    color: black; /* button text color */
-    font-weight: bold;
-    cursor: pointer;
-    outline: none;
+
+/* Regular button styles - much cleaner! */
+.buttonfeedback {
+  position: relative;
+  padding: 20px 20px;
+  font-weight: bold;
+  border-radius: 10px;
+  color: rgb(255, 255, 255);
+  font-size: 22px !important;
+  background-color: rgb(250, 208, 160);
+  border: 2px solid transparent;
+  cursor: pointer;
+  overflow: visible;
+  z-index: 1;
+  transition: all 0.3s ease;
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+}
+@property --angle{
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+/* Glow ring outside the button */
+.buttonfeedback::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: calc(100% + 16px);  /* bigger than button */
+  height: calc(100% + 16px); /* bigger than button */
+  border-radius: 50%;        /* perfect circle ring */
+  pointer-events: none;
+  background: conic-gradient(
+    from var(--angle),
+    #FF0000,
+    #FF7300,
+    #d39205,
+    #32a505,
+    #0077ff,
+    #002BFF,
+    #FF00C8,
+    #FF0000
+  );
+  background-size: 40%;
+  filter: blur(12px);
+  animation: spin 3s linear infinite;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  box-sizing: content-box;
+  border: 4px solid transparent; /* creates the hollow ring effect */
+  background-clip: padding-box;
+}
+.buttonfeedback::before{
+  filter: blur(1.5rem);
+  opacity: 0.5;
+
+}
+
+@keyframes spin{
+  from{
+    --angle:0deg;
   }
-.stack button span {
-    padding: 10px;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
+  to {
+    --angle:360deg;
   }
-  
-  @keyframes borderGradientMove {
-    0% {
-      background-position: 0% 50%;
-    }
-    100% {
-      background-position: 400% 50%;
-    }
+}
+
+/* Style the span inside the button */
+.buttonfeedback span {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+  z-index: 2;
+}
+
+.buttonfeedback span {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+@keyframes glowing {
+  0% {
+    background-position: 0% 50%;
   }
+  100% {
+    background-position: 400% 50%;
+  }
+}
+
 .stack button:hover .icon {
     transform: rotate(-10deg);
 }
+
 .stack button .icon {
     margin-right: 10px;
+}
+
+
+@keyframes clickBounce {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.buttonfeedback:active,
+.admin:active {
+  animation: clickBounce 0.3s ease forwards;
+}
+
+
+
+.tap-to-start {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  animation: pulseFade 2.5s ease-in-out infinite;
+  opacity: 0.7;
+  margin-top: 1.5rem;
+  user-select: none;
+  outline: none;
+  overflow: hidden;
+
+    /* Remove touch‑highlight on iOS / Android */
+  -webkit-tap-highlight-color: transparent;
+  /* Remove default button appearance (if it’s actually a <button>) */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  /* Prevent any user‑agent background flicker */
+  background-color: transparent !important;
+}
+.tap-to-start:focus,
+.tap-to-start:active {
+  outline: none;
+  background-color: transparent !important; /* prevent background darkening */
+  box-shadow: none;
+   overflow: hidden;
+}
+.tap-to-start p {
+  font-size: 1rem;
+  color: #ffffffd3;
+  margin-top: 0.3rem;
+  font-weight: 500;
+}
+
+/* Subtle pulsing effect */
+@keyframes pulseFade {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
 }

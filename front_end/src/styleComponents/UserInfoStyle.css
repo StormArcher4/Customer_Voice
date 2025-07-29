@@ -4,10 +4,7 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-image: url('../../public/background4.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+  min-height: 100vh;
   background-attachment: fixed;
   z-index: 0;
   overflow-y: auto;
@@ -20,34 +17,40 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.63);
+  background-color: rgba(253, 253, 253, 0.747);
   z-index: -1;
 }
 
 .formHolder {
-    width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh; 
+    height: 100vh;  /* fixed height for flex centering */
     box-sizing: border-box;
 }
 
-.formContainer {
-    background-color: rgba(233, 227, 210, 0.904);
-    text-align: center;
-    padding: 20px;
-    border-radius: 10px;
-    border: 1px solid #e99754;
-    box-shadow: 0px 2px 10px rgba(51, 46, 46, 0.651);
-    margin: 0 10px;
+.pagewraper2 .formHolder .formContainer {
+  width: clamp(400px, 90vw, 700px);
+  height: auto; /* or a fixed height if you want */
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.74);
+  border-radius: 10px;
+  border: 1px solid #ffffff71;
+  box-shadow: 0 2px 5px rgba(51, 46, 46, 0.65);
+  box-sizing: border-box;
+  flex-direction: column;  /* stack children vertically */
+  justify-content: center; /* vertical centering if needed */
+  align-items: center;     /* horizontal centering */
+  text-align: center;      /* text inside centered */
+  transform: scale(1.2);
 }
+
+
 
 .formContainer h1 {
     margin: 20px 0;
     color: #d85803;
-    font-size: 40px;
-}
+  font-size: clamp(1.2rem, 6vw, 2rem);}
 
 .formContainer form, .formContainer form .textField {
     margin-top: 20px;
@@ -59,11 +62,11 @@
 
 
 .textField .MuiInputBase-input {
-  color: black; /* input text color */
+  color: #163560; /* input text color */
 }
 
 .textField label {
-  color: #793203; /* label default color */
+  color:  #fd771d; /* label default color */
 }
 
 .textField.Mui-focused label,
@@ -72,15 +75,46 @@
 }
 
 .textField .MuiOutlinedInput-root fieldset {
-  border-color: #f88f52; /* default border */
+  border-color: #ee700871; /* default border */
   background-color: rgba(114, 50, 50, 0.1); /* optional input background */
   border-radius: 5px;
 }
 
 .textField:hover .MuiOutlinedInput-root fieldset {
-  border-color: white; /* border on hover */
+  border-color: rgb(253, 228, 191); /* border on hover */
 }
 
 .textField.Mui-focused .MuiOutlinedInput-root fieldset {
   border-color: white; /* border on focus */
 }
+
+
+
+@media (max-width: 1010px) {
+  .formContainer {
+    padding: 15px;
+    transform: scale(1.1) !important;
+  }
+
+}
+
+
+
+@media (max-width: 920px) {
+  .formContainer {
+    padding: 15px;
+    transform: scale(1) !important;
+  }
+
+}
+
+@media (max-height: 500px) {
+  .formContainer {
+    padding: 15px;
+    margin-top: 20px;
+    transform: scale(0.7) !important;
+  }
+
+
+}
+

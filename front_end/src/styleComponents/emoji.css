@@ -13,19 +13,25 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+}
 .pagewraper {
-  position: fixed;
+  position: relative;
+    min-height: 100vh;
+  width: 100%;
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
-  background-image: url('../../public/background2.jpg');
-  background-repeat: no-repeat;
+  height: auto;
   background-size: cover;
   background-position: center;
-  background-attachment: fixed;
-  z-index: 0;
-  overflow-y: auto;
+   z-index: 0;
+  overflow: auto;
+  max-height: 100vh;
 }
 
 .pagewraper::before {
@@ -35,27 +41,21 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.774);
+  background-color: rgba(253, 253, 253, 0.747);
   z-index: -1;
 }
 
 /* Title */
 .titletext {
-  font-size: clamp(2rem, 5vw, 3.5rem);
+
+  font-size: 45px;
   font-weight: 700;
   text-align: center !important;
-  margin: clamp(2rem, 10vh, 4rem) auto 1rem auto;
+  margin: clamp(2.5rem, 10vh, 4rem) auto 1rem auto;
   padding-top: env(safe-area-inset-top, 0);
-  font-family: 'Fontdiner Swanky', cursive;
-background: linear-gradient(270deg,
-  #ad4c06 0%,    
-  #ff7300 10%,  
-  #e09421 18%,   
-  #ccffcc 28%,    
-  #ff9800 90%,   
-  #ff6a00 100%    
-);
- background-size: 600% 600%;
+  font-family: "Manrope", Sans-serif;
+  background:#163560;
+  background-size: 600% 600%;
   animation: fadeSlideDown 1s ease-out forwards, gradientMove 8s ease-in-out infinite;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -79,57 +79,114 @@ background: linear-gradient(270deg,
   }
 }
 
-/* Grid Container for emoji cards */
+/* ✅ FIXED: Emoji cards in exactly 3 per row with tight gaps */
+
 .emojicontainer {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 16px;
-  justify-items: center;
-  width: 100%;
-  max-width: 1100px;
+
   margin: 0 auto;
-  padding: 1rem;
-  box-sizing: border-box;
-  overflow: hidden;
-  align-items: stretch; /* Equal height cards */
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 25px;
+  justify-content: center; /* ✅ center grid cells as a block */
+  align-items: center;
+  
+  width: 100%;
+  max-width: 750px;
+  margin: 0 auto;
+  
+
+  padding: 2rem;
+  background: rgba(235, 231, 231, 0.05);
+  border-radius: 16px;
+  z-index: 30;
+  overflow: auto;
 }
+
+.emoji-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  border-radius: 16px;
+  background: transparent;
+  animation: none !important; /* 🛑 kill ripple if JS added it */
+  transform: none !important;
+}
+
 
 /* Emoji card styling */
 .emoji-card {
+  position: relative;
   cursor: pointer;
   text-align: center;
   padding: clamp(0.8rem, 1.2vw, 1.5rem);
   border-radius: 16px;
-  box-shadow: 0 0 12px rgba(75, 137, 209, 0.2);
-  background: linear-gradient(145deg, rgba(245, 217, 141, 0.301), rgba(255, 236, 185, 0.151));
+  background:rgba(255, 255, 255, 0.774);
   transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
-  width: 180px;
-  min-height: 260px; /* fixed min height for all cards */
+  width: 100%;
+  overflow: hidden;
+
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow:
+    0 6px 12px rgba(0, 0, 0, 0.055),
+    inset 0 1px 0 rgba(255, 255, 255, 0.075);
+
+  transform: perspective(800px) translateZ(0);
+  will-change: transform;
+
+  min-height: 290px;
+  max-height: 200px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center; /* ✅ center horizontally */
   box-sizing: border-box;
   margin: 0;
-  position: relative;
-  overflow: hidden;
+  z-index: 40;
 }
 
-/* Selected card styles */
+
+
+.emoji-card:hover {
+  transform: rotateX(2deg) rotateY(2deg) scale(1.03);
+  box-shadow:
+    0 6px 20px rgba(92, 91, 91, 0.144),
+    inset 0 1px 0 rgba(104, 103, 103, 0.1);
+   background:  rgba(255, 200, 118, 0.548);
+
+}
+.emoji-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at top left, rgba(255,255,255,0.2), transparent);
+  opacity: 0;
+  transition: opacity 0.4s;
+  z-index: 1;
+  border-radius: inherit;
+}
+.emoji-card:hover::before {
+  opacity: 1;
+}
 .emoji-card.selected {
   transform: scale(1.05);
-  box-shadow: 0 0 25px 8px rgba(31, 32, 6, 0.445); 
-  background: linear-gradient(145deg, rgba(255, 172, 116, 0.918), rgba(241, 152, 92, 0.658)); 
-  z-index: 10;
-  transition: all 0.3s ease;
-  border-radius: 16px;
+  box-shadow: 0 0 25px 8px rgba(31, 32, 6, 0.445);
+  background: linear-gradient(145deg,
+    rgba(255, 172, 116, 0.918),
+    rgba(241, 152, 92, 0.658)
+  );
   backdrop-filter: blur(3px);
+  z-index: 10;
 }
 
 /* Lottie player inside card */
 .emoji-card > .lottie-player {
   width: 100% !important;
-  height: auto !important;
-  max-height: 160px;
+  max-height: 100px;
   margin-bottom: 0.5rem;
 }
 
@@ -140,65 +197,34 @@ background: linear-gradient(270deg,
   font-size: clamp(0.9rem, 1.6vw, 1.15rem);
   font-weight: 700;
   line-height: 1.4;
-  color: white;
+  color: #163560;
   text-align: center;
-  word-break: break-word;
   overflow-wrap: anywhere;
 
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: normal;
-
-  flex-shrink: 0;
-  user-select: none;
-}
-
-.emoji-card.selected p {
-  font-weight: 900;
-  font-size: clamp(1rem, 1.8vw, 1.3rem);
-
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 4;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: normal;
 }
 
-/* Button */
-.buttonnext {
-  padding: clamp(0.75rem, 2vw, 1rem) clamp(2rem, 10vw, 5rem);
-  font-size: clamp(1.25rem, 3vw, 2rem);
-  font-weight: 600;
-  border: none;
-  border-radius: 20px;
-  background-color: #ee730e;
-  color: rgba(250, 250, 250, 0.692);
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.363);
-  animation: fadeUp 0.8s ease-out forwards;
-  animation-delay: 0.4s;
-  opacity: 0;
-  white-space: nowrap;
-  margin: 0.4rem 0;
-  width: auto;
-  max-width: 100%;
-  box-sizing: border-box;
-}
 
-.buttonnext:hover {
-  transform: scale(1.05);
+/* ---------- Ripple Effect ---------- */
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(250, 136, 43, 0.637);
+  animation: ripple-effect 0.6s linear;
+  pointer-events: none;
+  transform: scale(0);
+  opacity: 0.75;
+  will-change: transform, opacity;
+  z-index: 2;
 }
-
-.buttonnext:disabled {
-  background-color: #e79f7b;
-  cursor: not-allowed;
+@keyframes ripple-effect {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
 }
-
 /* Animations */
 @keyframes gradientMove {
   0% {
@@ -235,27 +261,54 @@ background: linear-gradient(270deg,
 }
 
 /* Responsive tweaks */
-@media (max-width: 600px) {
+/* ---------- Responsive Fixes ---------- */
+
+@media (max-height: 800px) {
+  .pagewraper {
+    overflow: auto !important;
+    height: auto !important;
+  }
+}
+
+@media (max-width: 593px) {
   .emojicontainer {
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 12px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    overflow: none;
   }
 
   .emoji-card {
-    width: 140px;
-    min-height: 220px;
+    width: 180px;
+    min-height: 250px;
+    max-height: 240px;
+    margin: 0 auto;
   }
-
   .emoji-card.selected {
     width: 140px;
     min-height: 230px;
   }
-
-  .emoji-card p {
+  .emoji-card p,
+  .emoji-card.selected p {
     font-size: 0.9rem;
   }
-
+}
+@media (max-width: 440px) {
+  .emojicontainer {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    overflow:auto;
+  }
+  .emoji-card {
+    width: 160px;
+    min-height: 220px;
+  }
+  .emoji-card.selected {
+    width: 140px;
+    min-height: 230px;
+  }
+  .emoji-card p,
   .emoji-card.selected p {
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
 }
+

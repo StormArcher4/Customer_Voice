@@ -1,24 +1,27 @@
 .login-form {
-    background-color: #c9e2fd;
-    border: 1px solid white;
+    background-color: rgba(250, 139, 75, 0.808);
+    background-image: url('../../public/glass.jpg');
+    background-blend-mode: multiply;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    border: 1px solid rgba(240, 236, 234, 0.233);
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0px 0px 10px white;
+    box-shadow: 0px 0px 10px rgba(245, 241, 239, 0.418);
     z-index: 2;
 }
+
 @media (max-width: 600px) {
     .login-form {
-        width: calc(100% - 30px); 
+        width: calc(100% - 30px);
         margin: 0 auto !important;
     }
 }
+
 .login-form div {
     text-align: center;
     margin-bottom: 40px;
-}
-
-.login-form form {
-    padding: 10px;
 }
 
 .login-form div h2 {
@@ -26,29 +29,96 @@
     font-size: 40px;
     margin-bottom: 10px;
 }
+
 .login-form div p {
-    color: #555;
+    color: #fce0ca;
     font-weight: bold;
 }
-.login-form form .input
-{
+
+.login-form form {
+    padding: 10px;
+    position: relative;
+}
+
+.login-form form .input {
     margin-bottom: 10px;
 }
+
 .login-form form .input:focus {
     outline: none;
 }
+
 .login-form form button {
+    position: relative;
     padding: 10px 20px;
     border-radius: 10px;
-    background-color: #c050d6;
+    background-color: rgba(248, 4, 4, 0.671);
+    background-image: url('../../public/glass.jpg');
+    background-blend-mode: multiply;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
     color: white;
     font-weight: bolder;
-    transition: 0.3s;
+    font-size: 18px;
+    transition: 0.3s ease;
+    overflow: hidden;
+    border: none;
+    cursor: pointer;
 }
+
 .login-form form button:hover {
+    background-blend-mode: overlay;
     transform: scale(1.02);
+    color: white;
 }
+
+
 .login-form .alert {
-    padding: 0;
-    margin: 0;
+    padding: 10px 16px;
+    margin: 0px;
+    font-size: 14px;
+    border-radius: 6px;
+    width: 100%;
+    height: 100px;
+    box-sizing: border-box;
+    background-color: #ffe8caa9;
+    color: #b42602;
+}
+
+/* Sets the text color inside the input field (user's typed text) */
+.login-form .MuiInputBase-input {
+    color: rgb(26, 19, 19); /* Dark brownish-black text color */
+}
+
+/* Sets the color of the label (e.g., "Email", "Password") */
+.login-form .MuiInputLabel-root {
+    color: rgb(255, 253, 253); /* Almost pure white */
+}
+
+/* Changes the outline (border) color of the input field */
+.login-form .MuiOutlinedInput-notchedOutline {
+    border-color: rgba(250, 104, 6, 0.781); /* Orange border */
+}
+
+/* Styles the input field container */
+.login-form .MuiOutlinedInput-root {
+    background-color: #ffba92ab; /* Light orange background */
+    border-radius: 5px;        /* Slightly rounded corners */
+}
+
+/* Glow animation */
+@property --angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
+@keyframes spin {
+    from {
+        --angle: 0deg;
+    }
+    to {
+        --angle: 360deg;
+    }
 }
